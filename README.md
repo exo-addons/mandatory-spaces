@@ -9,7 +9,7 @@ exo.addons.mandatorySpaces⁼space1,space2,space3
 
 You can set as many spaces you want. The space name must be the technical name of the space, not the displayed name.
 
-
+ 
 Install 
 =====
 
