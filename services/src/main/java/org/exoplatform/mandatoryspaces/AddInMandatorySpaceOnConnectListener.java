@@ -17,9 +17,8 @@ import org.exoplatform.social.core.space.model.Space;
 import org.exoplatform.social.core.space.spi.SpaceService;
 
 /**
- * @author <a href="mailto:obouras@exoplatform.com">Omar Bouras</a>
+ * @author <a href="mailto:rdenarie@exoplatform.com">Romain Dénarié</a>
  * @version ${Revision}
- * @date 21/09/16
  */
 
 public class AddInMandatorySpaceOnConnectListener extends Listener<ConversationRegistry, ConversationState> {
