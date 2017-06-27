@@ -28,7 +28,7 @@
   </parent>
   <groupId>org.exoplatform.addons.mandatory-spaces</groupId>
   <artifactId>mandatory-spaces-parent</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.x-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>eXo Add-on:: Mandatory Spaces</name>
   <description>Mandatory Spaces add-on</description>
@@ -36,12 +36,12 @@
     <module>services</module>
     <module>packaging</module>
   </modules>
-  <scm>
+  <!--<scm>
     <connection>scm:git:git://github.com/exo-addons/mandatory-spaces.git</connection>
     <developerConnection>scm:git:git@github.com:exo-addons/mandatory-spaces.git</developerConnection>
     <tag>HEAD</tag>
     <url>https://github.com/exo-addons/mandatory-spaces.git</url>
-  </scm>
+  </scm>-->
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <org.exoplatform.platform.version>5.0.0-M09</org.exoplatform.platform.version>
@@ -65,5 +65,4 @@
     </dependencies>
   </dependencyManagement>
       
-
 </project>
