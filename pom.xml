@@ -44,7 +44,7 @@
   </scm>-->
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <org.exoplatform.platform.version>5.0.x-SNAPSHOT</org.exoplatform.platform.version>
+    <org.exoplatform.platform.version>5.0.0-M09</org.exoplatform.platform.version>
   </properties>
   <dependencyManagement>
     <dependencies>
