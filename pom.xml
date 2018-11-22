@@ -30,7 +30,7 @@
   <artifactId>mandatory-spaces-parent</artifactId>
   <version>1.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
-  <name>eXo Add-on:: Mandatory Spaces</name>
+  <name>Mandatory Spaces</name>
   <description>Mandatory Spaces add-on</description>
   <modules>
     <module>services</module>
