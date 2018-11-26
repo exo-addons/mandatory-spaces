@@ -10,7 +10,13 @@ exo.addons.mandatorySpaces⁼space1,space2,space3
 You can set as many spaces you want. The space name must be the technical name of the space, not the displayed name.
 
  
-Install 
+Install
 =====
 
 ./addon install mandatory-spaces
+
+
+Version
+=====
+
+1.0.2 is tested against eXo PLF 5.1.0

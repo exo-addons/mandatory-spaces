@@ -24,7 +24,7 @@
   <parent>
     <artifactId>mandatory-spaces-parent</artifactId>
     <groupId>org.exoplatform.addons.mandatory-spaces</groupId>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.0.x-SNAPSHOT</version>
   </parent>
   <artifactId>mandatory-spaces-services</artifactId>
   <packaging>jar</packaging>

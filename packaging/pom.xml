@@ -26,7 +26,7 @@
     <parent>
         <artifactId>mandatory-spaces-parent</artifactId>
         <groupId>org.exoplatform.addons.mandatory-spaces</groupId>
-        <version>1.0.1-SNAPSHOT</version>
+        <version>1.0.x-SNAPSHOT</version>
     </parent>
     <artifactId>mandatory-spaces-packaging</artifactId>
     <packaging>pom</packaging>
@@ -38,6 +38,13 @@
             <groupId>${project.groupId}</groupId>
             <artifactId>mandatory-spaces-services</artifactId>
             <type>jar</type>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>mandatory-spaces-webapp</artifactId>
+            <version>${project.version}</version>
+            <type>war</type>
             <scope>provided</scope>
         </dependency>
     </dependencies>

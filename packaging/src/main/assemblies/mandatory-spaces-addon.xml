@@ -41,5 +41,14 @@
             <outputFileNameMapping>${artifact.artifactId}-${artifact.baseVersion}.${artifact.extension}
             </outputFileNameMapping>
         </dependencySet>
+        <dependencySet>
+            <useProjectArtifact>false</useProjectArtifact>
+            <outputDirectory></outputDirectory>
+            <includes>
+                <include>${project.groupId}:mandatory-spaces-webapp:war</include>
+            </includes>
+            <scope>provided</scope>
+            <outputFileNameMapping>mandatory-spaces-extension.war</outputFileNameMapping>
+        </dependencySet>
     </dependencySets>
 </assembly>

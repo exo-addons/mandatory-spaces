@@ -24,16 +24,17 @@
   <parent>
     <artifactId>addons-parent-pom</artifactId>
     <groupId>org.exoplatform.addons</groupId>
-    <version>8-M01</version>
+    <version>9</version>
   </parent>
   <groupId>org.exoplatform.addons.mandatory-spaces</groupId>
   <artifactId>mandatory-spaces-parent</artifactId>
-  <version>1.0.1-SNAPSHOT</version>
+  <version>1.0.x-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>Mandatory Spaces</name>
   <description>Mandatory Spaces add-on</description>
   <modules>
     <module>services</module>
+    <module>war</module>
     <module>packaging</module>
   </modules>
   <scm>
@@ -44,7 +45,7 @@
   </scm>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <org.exoplatform.platform.version>5.0.0-M09</org.exoplatform.platform.version>
+    <org.exoplatform.platform.version>5.1.0</org.exoplatform.platform.version>
   </properties>
   <dependencyManagement>
     <dependencies>
@@ -61,7 +62,13 @@
         <artifactId>mandatory-spaces-services</artifactId>
         <version>${project.version}</version>
         <type>jar</type>
-      </dependency>
+      </dependency><dependency>
+      <groupId>org.exoplatform.addons.mandatory-spaces</groupId>
+      <artifactId>mandatory-spaces-war</artifactId>
+      <version>${project.version}</version>
+      <type>war</type>
+    </dependency>
+
     </dependencies>
   </dependencyManagement>
       
