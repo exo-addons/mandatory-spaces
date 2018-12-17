@@ -26,7 +26,7 @@
     <parent>
         <artifactId>mandatory-spaces-parent</artifactId>
         <groupId>org.exoplatform.addons.mandatory-spaces</groupId>
-        <version>1.0.x-SNAPSHOT</version>
+        <version>1.0.3</version>
     </parent>
     <artifactId>mandatory-spaces-packaging</artifactId>
     <packaging>pom</packaging>
