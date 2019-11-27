@@ -11,6 +11,9 @@ import org.exoplatform.services.listener.Event;
 import org.exoplatform.services.listener.Listener;
 import org.exoplatform.services.log.ExoLogger;
 import org.exoplatform.services.log.Log;
+import org.exoplatform.services.organization.Group;
+import org.exoplatform.services.organization.MembershipHandler;
+import org.exoplatform.services.organization.OrganizationService;
 import org.exoplatform.services.security.ConversationRegistry;
 import org.exoplatform.services.security.ConversationState;
 import org.exoplatform.social.core.space.model.Space;
@@ -27,14 +30,31 @@ public class AddInMandatorySpaceOnConnectListener extends Listener<ConversationR
 
     private List<String> defaultSpaceName;
 
+    private List<String> excludedGroups;
 
-    public AddInMandatorySpaceOnConnectListener(InitParams params, SpaceService spaceService){
+    private SpaceService spaceService;
+
+    private OrganizationService organizationService;
+
+
+    public AddInMandatorySpaceOnConnectListener(InitParams params, SpaceService spaceService, OrganizationService organizationService){
+        this.spaceService=spaceService;
+        this.organizationService=organizationService;
+
         defaultSpaceName=new ArrayList<String>();
         String spaces= params.getValueParam("defaultSpaces").getValue();
         if (!spaces.equals("${exo.addons.mandatorySpaces}")) {
             String[] spacesTab = spaces.split(",");
             for (String spaceName : spacesTab) {
                 if (!spaceName.equals("")) defaultSpaceName.add(spaceName.trim());
+            }
+        }
+        excludedGroups=new ArrayList<String>();
+        String groups= params.getValueParam("excludedGroups").getValue();
+        if (!groups.equals("${exo.addons.excludedGroups}")) {
+            String[] groupsTab = groups.split(",");
+            for (String groupName : groupsTab) {
+                if (!groupName.equals("")) excludedGroups.add(groupName.trim());
             }
         }
     }
@@ -44,25 +64,41 @@ public class AddInMandatorySpaceOnConnectListener extends Listener<ConversationR
     public void onEvent(Event<ConversationRegistry, ConversationState> event) throws Exception {
         String userId = event.getData().getIdentity().getUserId();
         ExoContainer container = ExoContainerContext.getCurrentContainer();
-        SpaceService spaceService = (SpaceService) container.getComponentInstanceOfType(SpaceService.class);
-        try {
-            RequestLifeCycle.begin(container);
-            for (String spaceName : defaultSpaceName) {
-                try {
-                    Space space = spaceService.getSpaceByGroupId("/spaces/" + spaceName);
-                    if (space!=null) {
-                        if (!spaceService.isMember(space, userId)) {
-                            spaceService.addMember(space, userId);
+        if (!isInExcludedGroups(userId)) {
+            try {
+                RequestLifeCycle.begin(container);
+                for (String spaceName : defaultSpaceName) {
+                    try {
+                        Space space = spaceService.getSpaceByGroupId("/spaces/" + spaceName);
+                        if (space != null) {
+                            if (!spaceService.isMember(space, userId)) {
+                                spaceService.addMember(space, userId);
+                            }
                         }
+                    } catch (Exception e) {
+                        LOG.warn("Failed to add user {} in space {} : ", userId, spaceName, e);
                     }
-                } catch (Exception e) {
-                    LOG.warn("Failed to add user {} in space {} : ", userId, spaceName, e);
+
                 }
 
+            } finally {
+                RequestLifeCycle.end();
             }
-
-        } finally {
-            RequestLifeCycle.end();
         }
+    }
+
+    private boolean isInExcludedGroups(String userId) {
+        MembershipHandler membershipHandler = this.organizationService.getMembershipHandler();
+        for (String group : excludedGroups) {
+            try {
+                if (membershipHandler.findMembershipsByUserAndGroup(userId, group).size()>0) {
+                    return true;
+                }
+            } catch (Exception e) {
+                LOG.error("Unable to read group "+group,e);
+            }
+        }
+        return false;
+
     }
 }
